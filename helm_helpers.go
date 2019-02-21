@@ -241,7 +241,7 @@ func validateReleaseCharts(apps map[string]*release) (bool, string) {
 		} else {
 			cmd := command{
 				Cmd:         "bash",
-				Args:        []string{"-c", "helm search " + r.Chart + " --version " + strconv.Quote(r.Version) + " -l"},
+				Args:        []string{"-c", "helm search --regexp '\\v" + r.Chart + "\\v' --version " + strconv.Quote(r.Version) + " -l"},
 				Description: "validating if chart " + r.Chart + "-" + r.Version + " is available in the defined repos.",
 			}
 
